@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-echo "start deploy"
+echo "start deploy ${USER}"
 GOPATH=$PWD GOOS=linux go build -v isubata
 for server in isu; do
     ssh -t $server "sudo systemctl stop isubata.golang.service"
@@ -9,4 +9,4 @@ for server in isu; do
     ssh -t $server "sudo systemctl start isubata.golang.service"
 done
 
-echo "finish deploy"
+echo "finish deploy ${USER}"
